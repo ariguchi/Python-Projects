@@ -1,0 +1,16 @@
+import random
+
+guess = 0
+num = random.randint(0,100)
+
+while guess!=num:
+    guess = int(input('Enter your gess between 1 and 100:'))
+    if abs(guess-num) <= 10:
+        print('You are close')
+    else:
+        print('You are far away')
+
+print('You are absolutely spot on !!!')
+print(f'The number was {num}')
+if num == 67:
+    print('SIX SEVENN')
