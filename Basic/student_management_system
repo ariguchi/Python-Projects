@@ -8,50 +8,85 @@ l = []
 rf = open('text.txt', 'r')
 wf = open('text.txt', 'a')
 
+stu_det = rf.readlines()
+
+
+def add_students():
+    _id = input('Enter ID: ')
+    for i in stu_det:
+        if _id in i:
+            print('ID already exists')
+            break
+        else:
+            name = input('Enter Name: ')
+            age = int(input('Enter Age: '))
+            grade = int(input('Enter Class: '))
+            marks = int(input("Enter Marks: "))
+            l.extend([_id, name, age, grade, marks])
+            wf.write(f'{_id},{name},{age},{grade},{marks}\n')
+            wf.close()
+
+def view_students():
+    for i in stu_det:
+        print(i)
+
+def search_student():
+    stu = input('Enter student name:')
+    for i in stu_det:
+        if stu in i:
+            print(i)
+
+def update_details():
+    id_ = input('Enter student id: ')
+    wf = open('text.txt','w')
+
+    _id = int(input('Enter ID: '))
+    name = input('Enter Name: ')
+    age = int(input('Enter Age: '))
+    grade = int(input('Enter Class: '))
+    marks = int(input("Enter Marks: "))
+    wf.write(f'{_id},{name},{age},{grade},{marks}\n')
+
+    for i in stu_det:
+        if id_ not in i:
+            wf.write(i)
+        else:
+            pass
+    wf.close()
+
+def delete_student():
+    id_ = input('Enter student id to be deleted: ')
+    wf = open('text.txt','w')
+    for i in stu_det:
+        if id_ not in i :
+            wf.write(i)
+        else:
+            pass
+    wf.close()
+
+
+
 while True:
-    print(' 1. Add Student\n 2. View all student details\n 3. Search Student\n 4. Modify student details\n 5. Delete student\n 6. Exit')
+    print(' 1. Add Student\n 2. View all student details\n 3. Search Student\n 4. Update student details\n 5. Delete student\n 6. Exit')
     ch = int(input('Enter choice:'))
+
     if ch == 1:
-        _id = int(input('Enter ID: '))
+        add_students()
 
-        name = input('Enter Name: ')
-        age = int(input('Enter Age: '))
-        grade = int(input('Enter Class: '))
-        marks = int(input("Enter Marks: "))
-        l.extend([_id, name, age, grade, marks])
-        wf.write(f'{_id},{name},{age},{grade},{marks}\n')
-        wf.close()
+    elif ch == 2:
+        view_students()
 
-    if ch == 2:
-        stu_det = rf.read()
-        print(stu_det)
+    elif ch == 3:
+        search_student()
 
-    if ch == 3:
-        stu = input('Enter student name: ')
-        stu_det = rf.readlines()
-        for i in stu_det:
-            if stu in i:
-                print(i)
+    elif ch == 4:
+        update_details()
 
-    if ch == 4:
-        id_no = input('Enter id number: ')
-        stu_det = rf.readlines()
-        for i in stu_det:
-            if id_no in i:
-                _id = int(input('Enter ID: '))
-                name = input('Enter Name: ')
-                age = int(input('Enter Age: '))
-                grade = int(input('Enter Class: '))
-                marks = int(input("Enter Marks: "))
-                l.extend([_id, name, age, grade, marks])
-                wf.write(f'{_id},{name},{age},{grade},{marks}\n')
+    elif ch == 5:
+        delete_student()
 
-
-    if ch == 5:
-        stu = input('Enter student ID: ')
-        stu_det = rf.readlines()
-        for i in stu_det:
-                if stu in i:
-                    print(i)
-    if ch == 6:
+    elif ch == 6:
         break
+
+    else:
+        print('Invalid response')
