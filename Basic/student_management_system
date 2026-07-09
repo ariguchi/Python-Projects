@@ -1,0 +1,57 @@
+
+print('\t===Welcome to Student Management System===')
+
+ch =0
+
+l = []
+
+rf = open('text.txt', 'r')
+wf = open('text.txt', 'a')
+
+while True:
+    print(' 1. Add Student\n 2. View all student details\n 3. Search Student\n 4. Modify student details\n 5. Delete student\n 6. Exit')
+    ch = int(input('Enter choice:'))
+    if ch == 1:
+        _id = int(input('Enter ID: '))
+
+        name = input('Enter Name: ')
+        age = int(input('Enter Age: '))
+        grade = int(input('Enter Class: '))
+        marks = int(input("Enter Marks: "))
+        l.extend([_id, name, age, grade, marks])
+        wf.write(f'{_id},{name},{age},{grade},{marks}\n')
+        wf.close()
+
+    if ch == 2:
+        stu_det = rf.read()
+        print(stu_det)
+
+    if ch == 3:
+        stu = input('Enter student name: ')
+        stu_det = rf.readlines()
+        for i in stu_det:
+            if stu in i:
+                print(i)
+
+    if ch == 4:
+        id_no = input('Enter id number: ')
+        stu_det = rf.readlines()
+        for i in stu_det:
+            if id_no in i:
+                _id = int(input('Enter ID: '))
+                name = input('Enter Name: ')
+                age = int(input('Enter Age: '))
+                grade = int(input('Enter Class: '))
+                marks = int(input("Enter Marks: "))
+                l.extend([_id, name, age, grade, marks])
+                wf.write(f'{_id},{name},{age},{grade},{marks}\n')
+
+
+    if ch == 5:
+        stu = input('Enter student ID: ')
+        stu_det = rf.readlines()
+        for i in stu_det:
+                if stu in i:
+                    print(i)
+    if ch == 6:
+        break
