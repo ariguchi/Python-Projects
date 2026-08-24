@@ -9,18 +9,12 @@ class Books:
     def display_info(self):
         return " Title -->{}\n Author -->{}".format(self.title, self.author)
 
-    def check_borrow(self):
-        if self.is_borrowed == 0:
-            print("You can borrow this book")
-        else:
-            print("You cannot borrow this book")
-
 class Members:
 
     def __init__(self, name, id):
         self.name = name
         self.id = id
-        self.borrowed = 0
+        self.borrowed_books = []
 
     def member_details(self):
         return "Member: {} | ID: {}".format(self.name, self.id)   
@@ -37,9 +31,20 @@ class Library:
     def add_member(self, members):
         self.members.append(members)
 
+    def borrow_book(self, books, members):
+        if books.is_borrowed == 0:
+            members.borrowed_books.append(books)
+            books.is_borrowed = 1
+        else:
+            print("The book is currently unavailable")
+
 b1 = Books("Harry Potter", "JK Rowling")
 m1 = Members("Conan", "1417")
 
 library = Library()
 library.add_books(b1)
 library.add_member(m1)
+
+library.borrow_book(b1,m1)
+library.borrow_book(b1,m1)
+
